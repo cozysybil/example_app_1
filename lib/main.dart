@@ -78,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Positioned.fill(
             child: Container(
+              margin: const EdgeInsets.all(10.0),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: <Color>[
                     Color(0xFFE01F61),
-                    Color(0xFFE06B91),
                     Color(0xFFDEB4C1),
                   ],
                 ),
@@ -92,8 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
           TextButton(
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(20.0),
               textStyle: const TextStyle(fontSize: 20),
+              minimumSize: const Size(300, 30),
             ),
             onPressed: () => _handleClick(goto),
             child: Row(
