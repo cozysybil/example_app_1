@@ -1,6 +1,12 @@
+import 'package:example_app_1/column/columnPage.dart';
+import 'package:example_app_1/listView/listViewPage.dart';
+import 'package:example_app_1/pushPopPage/pushPopPage.dart';
+import 'package:example_app_1/stack/stackPage.dart';
+import 'package:example_app_1/state/statePage.dart';
 import 'package:flutter/material.dart';
 
 import 'container/containerPage.dart';
+import 'row/RowPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,36 +46,38 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var menus = [
+    {'goto': '0', 'name': 'Container', 'icon': Icons.filter_frames_outlined},
+    {'goto': '1', 'name': 'Row', 'icon': Icons.more_horiz},
+    {'goto': '2', 'name': 'Column', 'icon': Icons.more_vert},
+    {'goto': '3', 'name': 'ListView', 'icon': Icons.desktop_windows},
+    {'goto': '4', 'name': 'Stack', 'icon': Icons.photo_library},
     {
-      'goto': 'container',
-      'name': 'Container',
-      'icon': Icons.filter_frames_outlined
-    },
-    {'goto': 'row', 'name': 'Row', 'icon': Icons.more_horiz},
-    {'goto': 'column', 'name': 'Column', 'icon': Icons.more_vert},
-    {'goto': 'listview', 'name': 'ListView', 'icon': Icons.desktop_windows},
-    {'goto': 'stack', 'name': 'Stack', 'icon': Icons.photo_library},
-    {
-      'goto': 'state',
+      'goto': '5',
       'name': 'Stateless & Stateful',
-      'icon': Icons.add_to_home_screen_outlined
+      'icon': Icons.add_to_home_screen_outlined,
     },
     {
-      'goto': 'pushpop',
+      'goto': '6',
       'name': 'Push & Pop',
-      'icon': Icons.add_photo_alternate_outlined
+      'icon': Icons.add_photo_alternate_outlined,
     }
   ];
 
-  void _handleClick(String goto) {
-    print({goto});
-    print({context});
+  var page = [
+    const ContainerPage(title: 'Container'),
+    const RowPage(title: 'Row'),
+    const ColumnPage(title: 'Column'),
+    const ListViewPage(title: 'ListView'),
+    const StackPage(title: 'Stack'),
+    const StatePage(title: 'Stateless & Stateful'),
+    const PushPopPage(title: 'Push & Pop')
+  ];
 
-    if (goto == 'container') {
-      print({'go go'});
+  void _handleClick(int goto) {
+    if (goto < page.length && goto < menus.length) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ContainerPage(title: 'Container')),
+        MaterialPageRoute(builder: (context) => page[goto]),
       );
     }
   }
@@ -107,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
               textStyle: const TextStyle(fontSize: 20),
               minimumSize: const Size(300, 30),
             ),
-            onPressed: () => _handleClick(goto),
+            onPressed: () => _handleClick(int.parse(goto)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [Icon(icon), Text(name)],
