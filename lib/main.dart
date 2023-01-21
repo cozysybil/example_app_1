@@ -37,8 +37,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var menus = [
+    {
+      'goto': 'container',
+      'name': 'Container',
+      'icon': Icons.filter_frames_outlined
+    },
+    {'goto': 'row', 'name': 'Row', 'icon': Icons.more_horiz},
+    {'goto': 'column', 'name': 'Column', 'icon': Icons.more_vert},
+    {'goto': 'listview', 'name': 'ListView', 'icon': Icons.desktop_windows},
+    {'goto': 'stack', 'name': 'Stack', 'icon': Icons.photo_library},
+    {
+      'goto': 'state',
+      'name': 'Stateless & Stateful',
+      'icon': Icons.add_to_home_screen_outlined
+    },
+    {
+      'goto': 'pushpop',
+      'name': 'Push & Pop',
+      'icon': Icons.add_photo_alternate_outlined
+    }
+  ];
+
   void _handleClick(String goto) {
     print({goto});
+  }
+
+  List<Widget> getList(m) {
+    List<Widget> childs = [];
+    for (int i = 0; i < m.length; i++) {
+      childs.add(customClipRRect(m[i]['goto'], m[i]['name'], m[i]['icon']));
+    }
+    return childs;
   }
 
   Widget customClipRRect(String goto, String name, IconData icon) {
@@ -90,15 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            customClipRRect('container', 'Container', Icons.filter_frames_outlined),
-            customClipRRect('row', 'Row', Icons.more_horiz),
-            customClipRRect('column', 'Column', Icons.more_vert),
-            customClipRRect('listview', 'ListView', Icons.desktop_windows),
-            customClipRRect('stack', 'Stack', Icons.photo_library),
-            customClipRRect('state', 'Stateless & Stateful', Icons.add_to_home_screen_outlined),
-            customClipRRect('pushpop', 'Push & Pop', Icons.add_photo_alternate_outlined),
-          ],
+          children: getList(menus),
         ),
       ),
     );
