@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'container/containerPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -61,6 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _handleClick(String goto) {
     print({goto});
+    print({context});
+
+    if (goto == 'container') {
+      print({'go go'});
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ContainerPage(title: 'Container')),
+      );
+    }
   }
 
   List<Widget> getList(m) {
