@@ -16,13 +16,38 @@ class _ContainerPageState extends State<ContainerPage> {
       appBar: AppBar(
         title: Center(
             child: Column(
-              children: [Text(textAlign: TextAlign.center, widget.title)],
-            )),
+          children: [Text(textAlign: TextAlign.center, widget.title)],
+        )),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[],
+          child: Column(
+        children: const <Widget>[
+          Spacer(),
+          FilledCardExample(),
+          Spacer(),
+        ],
+      )),
+    );
+  }
+}
+
+class FilledCardExample extends StatelessWidget {
+  const FilledCardExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        elevation: 0,
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: const SizedBox(
+          width: 200,
+          height: 200,
+          child: Center(
+              child: Text(
+            'Container Alignment',
+            style: TextStyle(color: Colors.white),
+          )),
         ),
       ),
     );
