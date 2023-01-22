@@ -38,18 +38,27 @@ class FilledCardExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        elevation: 0,
+        elevation: 8.0,
         color: Theme.of(context).colorScheme.primaryContainer,
+        shadowColor: Colors.grey,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: const SizedBox(
           width: 200,
           height: 200,
-          child: Center(
-              child: Text(
-            'Container Alignment',
-            style: TextStyle(color: Colors.white),
-          )),
+          child: Align(
+              alignment: Alignment.centerRight,
+            child: Text(
+              textAlign: TextAlign.justify,
+              overflow: TextOverflow.visible,
+              'Container Alignment',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
   }
 }
+
+// Spacer()
